@@ -1,0 +1,66 @@
+2026-11-23 15:32:29,459 [INFO] Браузер 0 открыт
+2026-11-23 15:32:41,786 [INFO] Браузер 1 открыт
+2026-11-23 15:32:57,133 [INFO] Браузер 2 открыт
+2026-11-23 15:33:10,290 [INFO] Браузер 3 открыт
+2026-11-23 15:33:10,511 [INFO] Новая популяция NEAT
+2026-11-23 15:33:10,511 [INFO] === Поколение 0 ===
+2026-11-23 15:33:51,103 [INFO] === Поколение 1 ===
+2026-11-23 15:34:11,471 [INFO] === Поколение 2 ===
+2026-11-23 15:34:33,351 [INFO] === Поколение 3 ===
+2026-11-23 15:34:56,504 [INFO] === Поколение 4 ===
+2026-11-23 15:35:22,012 [INFO] Чекпоинт: checkpoints/neat_checkpoint_gen_5.pkl
+2026-11-23 15:35:22,021 [INFO] === Поколение 5 ===
+2026-11-23 15:35:44,585 [INFO] === Поколение 6 ===
+2026-11-23 15:36:09,062 [INFO] === Поколение 7 ===
+2026-11-23 15:36:30,695 [INFO] === Поколение 8 ===
+2026-11-23 15:36:52,949 [INFO] === Поколение 9 ===
+2026-11-23 15:37:14,674 [INFO] Чекпоинт: checkpoints/neat_checkpoint_gen_10.pkl
+2026-11-23 15:37:14,677 [INFO] === Поколение 10 ===
+2026-11-23 15:37:35,973 [INFO] === Поколение 11 ===
+2026-11-23 15:38:03,419 [INFO] === Поколение 12 ===
+2026-11-23 15:38:29,083 [INFO] === Поколение 13 ===
+2026-11-23 15:38:58,425 [INFO] === Поколение 14 ===
+2026-11-23 15:39:12,075 [WARNING] Браузер 0: страница закрыта, пересоздаём...
+2026-11-23 15:39:15,504 [ERROR] Не удалось пересоздать страницу: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://wayou.github.io/t-rex-runner/", waiting until "domcontentloaded"
+
+Traceback (most recent call last):
+  File "/Users/admin/Desktop/Dino/dino.py", line 530, in <module>
+    main()
+    ~~~~^^
+  File "/Users/admin/Desktop/Dino/dino.py", line 526, in main
+    asyncio.run(trainer.train())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 205, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/admin/Desktop/Dino/dino.py", line 428, in train
+    await self.eval_generation(list(self.pop.population.items()))
+  File "/Users/admin/Desktop/Dino/dino.py", line 364, in eval_generation
+    await asyncio.gather(*(run_one(gid, g) for gid, g in genomes))
+  File "/Users/admin/Desktop/Dino/dino.py", line 360, in run_one
+    await self.eval_one(game, agents[gid], self.max_steps)
+  File "/Users/admin/Desktop/Dino/dino.py", line 324, in eval_one
+    await game.jump()
+  File "/Users/admin/Desktop/Dino/dino.py", line 209, in jump
+    await self.page.keyboard.press("Space")
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/playwright/async_api/_generated.py", line 10529, in press
+    await self._impl_obj.press(key=key, delay=delay)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/playwright/_impl/_input.py", line 38, in press
+    await self._channel.send("keyboardPress", None, locals_to_params(locals()))
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/playwright/_impl/_connection.py", line 78, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/playwright/_impl/_connection.py", line 636, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Keyboard.press: Target page, context or browser has been closed
